@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "1748454825191",
+    "name": "fsafasfas",
+    "price": 9999999,
+    "image": "https://img.kwcdn.com/product/fancy/d0cd2fb1-9aa4-467f-9cc6-f80bccab1155.jpg?imageView2/2/w/800/q/70/format/webp",
+    "category": "posude-za-pripremu",
+    "stock": true,
+    "description": "dsadas",
+    "isFeatured": true
+  }
+]
