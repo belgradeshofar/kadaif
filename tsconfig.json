@@ -1,3 +1,4 @@
+// tsconfig.json
 {
   "compilerOptions": {
     "target": "ES2017",
@@ -20,7 +21,9 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    // Dodato za eksplicitne tipove
+    "types": ["node", "react", "react-dom"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

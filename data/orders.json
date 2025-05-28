@@ -1,0 +1,110 @@
+[
+  {
+    "id": "1747945784644",
+    "createdAt": "2025-05-22T20:29:44.644Z",
+    "customer": {
+      "email": "dsadsa@gmail.com",
+      "phone": "dsadas",
+      "firstName": "dsaasd",
+      "lastName": "dsaasdsda",
+      "address": {
+        "city": "dsaadsads",
+        "country": "Srbija",
+        "street": "sdasda",
+        "streetNumber": "dsaasd",
+        "building": "",
+        "floor": "",
+        "apartment": "",
+        "postalCode": "sdaasd",
+        "notes": ""
+      }
+    },
+    "items": [
+      {
+        "id": "1747937601588-S",
+        "name": "Muska crna Ne damo homolje (S)",
+        "price": 1200,
+        "image": "https://brendly-prod.s3.eu-central-1.amazonaws.com/27002/file_assets/v2/27002_4627f68a-9d2f-465d-afbe-f3a0ac960b46_compressed.jpg",
+        "quantity": 1
+      }
+    ],
+    "subtotal": 1200,
+    "deliveryType": "standard",
+    "deliveryCost": 380,
+    "promo": "",
+    "total": 1580,
+    "paymentMethod": "cod"
+  },
+  {
+    "id": "1747989927908",
+    "createdAt": "2025-05-23T08:45:27.908Z",
+    "customer": {
+      "email": "dsadsa@gmail.com",
+      "phone": "dsadas",
+      "firstName": "dsaasd",
+      "lastName": "dsaasdsda",
+      "address": {
+        "city": "dsaadsads",
+        "country": "Srbija",
+        "street": "sdasda",
+        "streetNumber": "dsaasd",
+        "building": "",
+        "floor": "",
+        "apartment": "",
+        "postalCode": "sdaasd",
+        "notes": "vla bla "
+      }
+    },
+    "items": [
+      {
+        "id": "1747989813103-5XL",
+        "name": "Muska Majica Rio Tinto Mrs (5XL)",
+        "price": 1890,
+        "image": "https://brendly-prod.s3.eu-central-1.amazonaws.com/27002/file_assets/v2/27002_4627f68a-9d2f-465d-afbe-f3a0ac960b46_compressed.jpg",
+        "quantity": 1
+      }
+    ],
+    "subtotal": 1890,
+    "deliveryType": "standard",
+    "deliveryCost": 380,
+    "promo": "",
+    "total": 2270,
+    "paymentMethod": "cod"
+  },
+  {
+    "id": "1748006672337",
+    "createdAt": "2025-05-23T13:24:32.337Z",
+    "customer": {
+      "email": "dsadsa@gmail.com",
+      "phone": "dsadas",
+      "firstName": "dsaasd",
+      "lastName": "dsaasdsda",
+      "address": {
+        "city": "dsaadsads",
+        "country": "Srbija",
+        "street": "sdasda",
+        "streetNumber": "dsaasd",
+        "building": "",
+        "floor": "",
+        "apartment": "",
+        "postalCode": "sdaasd",
+        "notes": ""
+      }
+    },
+    "items": [
+      {
+        "id": "1747989813103-S",
+        "name": "Muska Majica Rio Tinto Mrs (S)",
+        "price": 1890,
+        "image": "https://brendly-prod.s3.eu-central-1.amazonaws.com/27002/file_assets/v2/27002_4627f68a-9d2f-465d-afbe-f3a0ac960b46_compressed.jpg",
+        "quantity": 1
+      }
+    ],
+    "subtotal": 1890,
+    "deliveryType": "standard",
+    "deliveryCost": 380,
+    "promo": "",
+    "total": 2270,
+    "paymentMethod": "cod"
+  }
+]
