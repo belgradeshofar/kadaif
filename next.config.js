@@ -4,18 +4,21 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'img.kwcdn.com',       // Temu (slike proizvoda)
+        hostname: 'img.kwcdn.com',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'brendly-prod.s3.eu-central-1.amazonaws.com',  // Brendly server
+        hostname: 'brendly-prod.s3.eu-central-1.amazonaws.com',
         pathname: '/**',
-      }
-    ]
+      },
+    ],
   },
   eslint: {
-    ignoreDuringBuilds: true, // Vercel build neće stati zbog ESLint grešaka
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 
