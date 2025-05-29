@@ -1,4 +1,5 @@
 // app/product/[id]/page.tsx
+import React from 'react';
 import path from 'path';
 import { promises as fs } from 'fs';
 import ProductDetail from '../../../components/ProductDetail';
@@ -12,26 +13,19 @@ interface RawProduct {
   sizeOptions?: string[];
 }
 
-export default async function ProductPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  // ⬇️ await params pre upotrebe
-  const { id } = await params;
-
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const { id } = await Promise.resolve(params); // ✅ ispravno awaitovanje
   const dataFile = path.join(process.cwd(), 'data', 'products.json');
-  let products: RawProduct[] = [];
-  try {
-    const json = await fs.readFile(dataFile, 'utf-8');
-    products = JSON.parse(json);
-  } catch {
-    products = [];
-  }
+  const json = await fs.readFile(dataFile, 'utf-8');
+  const products: RawProduct[] = JSON.parse(json || '[]');
 
   const product = products.find((p) => p.id === id);
   if (!product) {
-    return <h1 className="text-center mt-20 text-xl">Proizvod nije pronađen.</h1>;
+    return (
+      <h1 className="text-center mt-20 text-xl">
+        Proizvod nije pronađen.
+      </h1>
+    );
   }
 
   const formatted = {

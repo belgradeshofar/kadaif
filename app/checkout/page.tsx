@@ -31,10 +31,10 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
 
   const subtotal = items.reduce((s, i) => s + i.price * i.quantity, 0);
-  const deliveryCost = deliveryType === 'standard'
+  const deliverycost = deliveryType === 'standard'
     ? SHIPPING
     : SHIPPING + PRIORITY_SURCHARGE;
-  const total = subtotal + deliveryCost;
+  const total = subtotal + deliverycost;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,9 +68,9 @@ export default function CheckoutPage() {
           items,
           subtotal,
           deliveryType,
-          deliveryCost,
+          deliverycost,
           total,
-          paymentMethod: 'cod',
+          paymentmethod: 'cod',
         }),
       });
       if (!res.ok) throw new Error();

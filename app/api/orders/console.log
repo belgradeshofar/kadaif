@@ -1,0 +1,14 @@
+console.log("➕ Nova porudžbina:", newOrder);
+
+const { error } = await supabase.from('orders').insert([newOrder]);
+if (error) {
+  console.error("❌ Greška prilikom upisa u Supabase:", error);
+  return NextResponse.json(
+    { error: 'Greška prilikom čuvanja porudžbine u bazi.' },
+    { status: 500 }
+  );
+}
+
+console.log("✅ Porudžbina uspešno snimljena u Supabase");
+
+await sendOrderEmail(newOrder);
