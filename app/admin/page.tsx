@@ -36,10 +36,22 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (!authenticated) return;
+
     fetch('/api/products')
       .then(res => res.json())
-      .then(setProducts)
-      .catch(console.error);
+      .then(data => {
+        // Proverimo da li je niz
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error('🛑 API /api/products nije vratio listu:', data);
+          setProducts([]); // fallback na prazan niz
+        }
+      })
+      .catch(err => {
+        console.error('🔥 Greška pri pozivu /api/products:', err);
+        setProducts([]);
+      });
   }, [authenticated]);
 
   const handleLogin = (e: React.FormEvent) => {
@@ -76,9 +88,12 @@ export default function AdminPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       });
-      if (!res.ok) throw new Error();
-      const newProduct: Product = await res.json();
-      setProducts(prev => [...prev, newProduct]);
+      const data = await res.json();
+      if (!res.ok || !data || Array.isArray(data)) {
+        throw new Error(data?.error || 'Neuspeh pri dodavanju');
+      }
+      // data je novi proizvod (objekat)
+      setProducts(prev => [...prev, data as Product]);
       setForm({
         name: '',
         price: 0,
@@ -89,7 +104,8 @@ export default function AdminPage() {
         isFeatured: false
       });
       setStatus('Uspešno dodato!');
-    } catch {
+    } catch (e: any) {
+      console.error('🔥 POST /api/products error:', e);
       setStatus('Došlo je do greške');
     }
   };
@@ -103,11 +119,10 @@ export default function AdminPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id })
       });
-      if (res.ok) {
-        setProducts(prev => prev.filter(p => p.id !== id));
-      }
-    } catch {
-      console.error('Greška pri brisanju');
+      if (!res.ok) throw new Error(`Status ${res.status}`);
+      setProducts(prev => prev.filter(p => p.id !== id));
+    } catch (e) {
+      console.error('🔥 Greška pri brisanju:', e);
     }
   };
 
