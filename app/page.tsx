@@ -21,7 +21,7 @@ export default function HomePage() {
     addItem({
       id: 'kalup-dubai',
       name: 'Kalup za Dubai čokolade',
-      price: 1999,
+      price: 690,
       image: '/images/kalup-dubai-cokolade.jpg',
       quantity,
     })
