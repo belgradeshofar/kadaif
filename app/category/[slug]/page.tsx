@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 // app/category/[slug]/page.tsx
 import path from 'path';
 import { promises as fs } from 'fs';

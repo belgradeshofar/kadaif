@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 // app/product/[slug]/page.tsx
 import ProductDetail from '../../../components/ProductDetail';
 import { supabase } from '@/lib/supabase';

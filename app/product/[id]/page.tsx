@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 // app/product/[id]/page.tsx
 import React from 'react';
 import path from 'path';
