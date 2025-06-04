@@ -1,8 +1,10 @@
+// app/page.tsx
+
 'use client'
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { useCart } from '../app/context/CartContext'
+import { useCart } from './context/CartContext'
 import SeoDubaiSection from './components/SeoDubaiSection'
 import VodicDubaiSlatkisi from './components/VodicDubaiSlatkisi'
 

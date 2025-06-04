@@ -1,48 +1,49 @@
-// app/category/[slug]/page.tsx
+// app/product/[id]/page.tsx
 
-import React from 'react';
-import productsData from '../../../data/products.json';
-import ProductList from '../../components/ProductList';
+import ProductDetail from '../../components/ProductDetail'
+import productsData from '../../../data/products.json'
 
 interface RawProduct {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  category: string;
+  id: string
+  name: string
+  price: number | string
+  image: string
+  description?: string
+  sizeOptions?: string[]
 }
 
-export default async function CategoryPage({
+interface FormattedProduct {
+  id: string
+  name: string
+  price: string
+  image: string
+  description?: string
+  sizeOptions?: string[]
+}
+
+export default function ProductPage({
   params,
 }: {
-  params: { slug: string };
+  params: { id: string }
 }) {
-  // productsData je niz objekata iz data/products.json
-  const products: RawProduct[] = Array.isArray(productsData) ? productsData : [];
+  const { id } = params
+  const allProducts: RawProduct[] = productsData
 
-  const filtered = products.filter(
-    (p) => p.category.toLowerCase() === params.slug.toLowerCase()
-  );
+  // pronađi proizvod po ID-ju
+  const product = allProducts.find((p) => p.id === id)
 
-  const formatted = filtered.map((p) => ({
-    ...p,
-    price: `${p.price.toFixed(0)} RSD`,
-    slug: p.name
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^a-z0-9\-]/g, ''),
-  }));
-
-  return (
-    <main className="px-6 py-12 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold capitalize mb-8">
-        {params.slug.replace('-', ' ')}
+  if (!product) {
+    return (
+      <h1 className="text-center mt-20 text-xl">
+        Proizvod nije pronađen.
       </h1>
-      {formatted.length > 0 ? (
-        <ProductList products={formatted} />
-      ) : (
-        <p className="text-gray-600">Nema proizvoda u ovoj kategoriji.</p>
-      )}
-    </main>
-  );
+    )
+  }
+
+  const formatted: FormattedProduct = {
+    ...product,
+    price: `${Number(product.price).toFixed(0)} RSD`,
+  }
+
+  return <ProductDetail product={formatted} />
 }

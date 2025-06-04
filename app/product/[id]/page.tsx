@@ -1,35 +1,49 @@
 // app/product/[id]/page.tsx
 
-import React from 'react';
-import productsData from '../../../data/products.json';
-import ProductDetail from '../../components/ProductDetail';
+import ProductDetail from '../../components/ProductDetail'
+import productsData from '../../../data/products.json'
 
 interface RawProduct {
-  id: string;
-  name: string;
-  price: number | string;
-  image: string;
-  description?: string;
-  sizeOptions?: string[];
+  id: string
+  name: string
+  price: number | string
+  image: string
+  description?: string
+  sizeOptions?: string[]
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  // productsData je niz objekata iz data/products.json
-  const products: RawProduct[] = Array.isArray(productsData) ? productsData : [];
+interface FormattedProduct {
+  id: string
+  name: string
+  price: string
+  image: string
+  description?: string
+  sizeOptions?: string[]
+}
 
-  const product = products.find((p) => p.id === params.id);
+export default function ProductPage({
+  params,
+}: {
+  params: { id: string }
+}) {
+  const { id } = params
+  const allProducts: RawProduct[] = productsData
+
+  // pronađi proizvod po ID-ju
+  const product = allProducts.find((p) => p.id === id)
+
   if (!product) {
     return (
       <h1 className="text-center mt-20 text-xl">
         Proizvod nije pronađen.
       </h1>
-    );
+    )
   }
 
-  const formatted = {
+  const formatted: FormattedProduct = {
     ...product,
     price: `${Number(product.price).toFixed(0)} RSD`,
-  };
+  }
 
-  return <ProductDetail product={formatted} />;
+  return <ProductDetail product={formatted} />
 }
