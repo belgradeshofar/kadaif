@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 
 // app/category/[slug]/page.tsx
 import path from 'path';
@@ -29,7 +28,11 @@ export default async function CategoryPage({
 
   const formatted = filtered.map(p => ({
     ...p,
-    price: `${p.price.toFixed(0)} RSD`
+    price: `${p.price.toFixed(0)} RSD`,
+    slug: p.name
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9\-]/g, '')
   }));
 
   return (
