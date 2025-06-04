@@ -1,9 +1,7 @@
-export const runtime = 'edge';
-
 // app/product/[id]/page.tsx
+
 import React from 'react';
-import path from 'path';
-import { promises as fs } from 'fs';
+import productsData from '../../../data/products.json';
 import ProductDetail from '../../components/ProductDetail';
 
 interface RawProduct {
@@ -16,23 +14,8 @@ interface RawProduct {
 }
 
 export default async function ProductPage({ params }: { params: { id: string } }) {
-  const dataFile = path.join(process.cwd(), 'data', 'products.json');
-
-  let json: string;
-  try {
-    json = await fs.readFile(dataFile, 'utf-8');
-  } catch (e) {
-    console.error('❌ Nije moguće pročitati products.json:', e);
-    return <h1 className="text-center mt-20 text-xl">Greška u učitavanju podataka.</h1>;
-  }
-
-  let products: RawProduct[] = [];
-  try {
-    products = JSON.parse(json || '[]');
-  } catch (e) {
-    console.error('❌ JSON parse greška:', e);
-    return <h1 className="text-center mt-20 text-xl">Neispravan format podataka.</h1>;
-  }
+  // productsData je niz objekata iz data/products.json
+  const products: RawProduct[] = Array.isArray(productsData) ? productsData : [];
 
   const product = products.find((p) => p.id === params.id);
   if (!product) {
